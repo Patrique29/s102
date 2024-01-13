@@ -2,6 +2,7 @@ class PlusGrandeSomme{
     long cpt = 0;
     void principal(){
         testPlusGrdeSomme1();
+        testPlusGrdeSomme1Efficacite();
     }
 
 
@@ -24,6 +25,7 @@ class PlusGrandeSomme{
             // taille de la sous séquence
             for(int lengthSubsequence = 0; lengthSubsequence < n-index; lengthSubsequence++){
                 for(int iii = 0;iii < lengthSubsequence ;iii++){
+                    cpt++; //!do not count
                     add += arr[index+iii];
                 }
                 if(add > result[0]){
@@ -76,6 +78,35 @@ class PlusGrandeSomme{
     }
 
 //METHODE EFFICACITE
+    void testPlusGrdeSomme1Efficacite(){
+        int[] arr;
+        int n;
+        long t1,t2,diffT;
+        double ope;
+        n = 32;
 
+        for(int i = 1; i <= 5;i++){
+            System.out.println("exp n"+i);
+            System.out.println("n="+n);
+            arr = new int[n];
+            for(int j = 0; j < n;j++){
+                arr[j] = -5000 + (int)(Math.random() * 10001);
+            }
+            cpt = 0;
+            t1 = System.currentTimeMillis();
+            plusGrdeSomme1(arr, n);
+            t2 = System.currentTimeMillis();
+            System.out.println("cpt ="+cpt);
+            diffT = (t2 - t1);
+            System.out.println("Tps = " + diffT + " ms");
+
+
+            ope = (double) (cpt / (double) (n*n*n));
+            System.out.println("cpt/n^3 =" + ope + " constant =1");
+            n *= 2;
+            System.out.println("-------");
+        }
+
+    }
 
 }
