@@ -1,8 +1,9 @@
 class PlusGrandeSomme{
     long cpt = 0;
     void principal(){
-        testPlusGrdeSomme1();
-        testPlusGrdeSomme1Efficacite();
+        int[] arr1 = {-1,8,-4,5,6,-9,-7,0,12};
+        int n1 = 9;
+        System.out.println(plusGrdeSomme3(arr1,n1)[0]);
     }
 
 
@@ -17,9 +18,9 @@ class PlusGrandeSomme{
         //* add = max
         //* index = ind1
         //* index+lengthSubsequence-1 = ind2 or the index + its length - 1
+        int[] result = new int[3];
         int add = 0;
         boolean onlyNegatives = true;
-        int[] result = new int[3];
         for(int index = 1; index < n; index++){
             if(arr[index] > 0) onlyNegatives = false;
             // taille de la sous séquence
@@ -36,27 +37,81 @@ class PlusGrandeSomme{
                 add = 0;
             }
         }
-
+        
         if(onlyNegatives){
             result[0] = 0;
             result[1] = 0;
             result[2] = 0;
         }
+        
+        return result;
+    }
+    
+    
+    /**
+     * TODO
+     * @param arr the array
+     * @param n length of the array
+     * @return an array
+     */
+    int[] plusGrdeSomme3(int[] arr, int n){
+        //![max,ind1,ind2]
+        int ind1 = 0,ind2 =n-1;
+        int[] result;
+        
+        result = plusGrdeSommeRec3(arr,n,ind1,ind2);
 
         return result;
     }
 
+    int[] plusGrdeSommeRec3(int[] arr, int n,int ind1,int ind2){
+        int[] result = new int[3];
+        if (ind1 == ind2)
+        {
+            result[0] = arr[ind1];
+            result[1] = ind1;
+            result[2] = ind2;
+        }else{
+            int milieu = (ind1 + ind2)/2;
+            int mgmax = arr[milieu];
+            //left side
+            int somme = 0;
+            for(int i = ind1;i <= milieu;i++){
+                somme += arr[i];
+                if(somme > mgmax){
+                    mgmax = somme;
+                    result[1] = i;
+                    result[2] = milieu;
+                }
+            }
+            int mdmax = arr[milieu+1];
+            for(int i = ind2;i > milieu;i--){
+                somme += arr[i];
+                if(somme > mdmax){
+                    mdmax = somme;
+                    result[1] = milieu;
+                    result[2] = i;
+                }
+            }
+            result[0] = mdmax + mgmax;
 
+            
+
+
+        }
+        
+        return result;
+    }
 // METHODE DE TEST
 
 
-    void testPlusGrdeSomme1(){
-        int[] arr1 = {-1,8,-4,5,6,-9,-7,0,12};
-        int n1 = 9;
-        int[] expect1 = {15,1,4};
-        testCasPlusGrdeSomme1(arr1,n1,expect1);
-        
-        int[] arr2 = {-2,-5,-5,-10,-1,-50};
+void testPlusGrdeSomme1(){
+    int[] arr1 = {-1,8,-4,5,6,-9,-7,0,12};
+    int n1 = 9;
+    int[] expect1 = {15,1,4};
+    testCasPlusGrdeSomme1(arr1,n1,expect1);
+    
+    int[] arr2 = {-2,-5,-5,-10,-1,-50};
         int n2 = 6;
         int[] expect2 = {0,0,0};
         testCasPlusGrdeSomme1(arr2,n2,expect2);
@@ -79,33 +134,7 @@ class PlusGrandeSomme{
 
 //METHODE EFFICACITE
     void testPlusGrdeSomme1Efficacite(){
-        int[] arr;
-        int n;
-        long t1,t2,diffT;
-        double ope;
-        n = 32;
 
-        for(int i = 1; i <= 5;i++){
-            System.out.println("exp n"+i);
-            System.out.println("n="+n);
-            arr = new int[n];
-            for(int j = 0; j < n;j++){
-                arr[j] = -5000 + (int)(Math.random() * 10001);
-            }
-            cpt = 0;
-            t1 = System.currentTimeMillis();
-            plusGrdeSomme1(arr, n);
-            t2 = System.currentTimeMillis();
-            System.out.println("cpt ="+cpt);
-            diffT = (t2 - t1);
-            System.out.println("Tps = " + diffT + " ms");
-
-
-            ope = (double) (cpt / (double) (n*n*n));
-            System.out.println("cpt/n^3 =" + ope + " constant =1");
-            n *= 2;
-            System.out.println("-------");
-        }
 
     }
 
