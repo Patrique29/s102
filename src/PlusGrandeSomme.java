@@ -163,7 +163,6 @@ class PlusGrandeSomme{
         return result;
     }
 
-
     int[] plusGrdeSomme4(int[] list,int n){
         int[] result = new int[3];
         int[] S = new int[n];
@@ -198,7 +197,8 @@ class PlusGrandeSomme{
         result[1] = indDeb;
         return result;
     }
-// METHODE DE TEST
+
+    // METHODE DE TEST
 
 
 void testPlusGrdeSomme1(){
