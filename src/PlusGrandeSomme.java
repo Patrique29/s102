@@ -12,18 +12,15 @@ class PlusGrandeSomme{
         // System.out.println(result[1]);
         // System.out.println(result[2]);
         testPlusGrdeSomme3Efficacite();
-        int[] tableau = {-1,8,-4,5,6,-9,-7,0,12};
 
-        int[] resultat = trouverSousSequenceMax(arr2, 0, arr2.length - 1);
+        // int[] resultat = plusGrdeSomme3(arr2, arr2.length);
 
-        System.out.println("La somme maximale de la sous-séquence est : " + resultat[0]);
-        System.out.println("Indices de la sous-séquence maximale : [" + resultat[1] + ", " + resultat[2] + "]");
+       
 
-
-        // testPlusGrdeSomme1();
-        // testPlusGrdeSomme2();
-        // testPlusGrdeSomme3();
-        // testPlusGrdeSomme4();
+        testPlusGrdeSomme1();
+        testPlusGrdeSomme2();
+        testPlusGrdeSomme3();
+        testPlusGrdeSomme4();
         
     }
 
@@ -112,136 +109,89 @@ class PlusGrandeSomme{
         int ind1 = 0,ind2 =n-1;
         int[] result = new int[3];
         
-        result = plusGrdeSommeRec3(arr,n,ind1,ind2,result);
+        result = plusGrdeSommeRec3(arr,n,ind1,ind2);
 
         return result;
     }
 
-    int[] plusGrdeSommeRec3(int[] arr, int n,int ind1,int ind2,int[] pastResult){
-        int[] result = pastResult;
-        
-        if (ind1 == ind2)
-        {
-            result[0] = arr[ind1];
-            result[1] = ind1;
-            result[2] = ind2;
+    /**
+     * 
+     * @param arr
+     * @param n
+     * @param start
+     * @param end
+     * @return
+     */
+    int[] plusGrdeSommeRec3(int[] arr,int n, int start, int end) {
+        int[] result = new int[3];
+        if (start == end) {
+            result[0] = arr[start];
+            result[1] = start;
+            result[2] = end;
         }else{
-            int milieu = (ind1 + ind2)/2;
-            int max;
 
-            //left side
-            int maxL = arr[milieu];
-            int[] resultLeft = calculer(arr,n,ind1,milieu,maxL);
+            int middle = (start + end) / 2;
 
-            //right side
-            int maxR = arr[milieu+1];
-            int[] resultRight = calculer(arr,n,milieu+1,ind2,maxR);
-            max = resultLeft[0] + resultRight[0];
+            int[] left = plusGrdeSommeRec3(arr,n, start, middle);
+            int[] right = plusGrdeSommeRec3(arr,n, middle + 1, end);
+            int[] croise = trouverSousSequenceCroiseMax(arr, start, middle, end);
 
-
-            // System.out.println("a ind1 ="+ind1+"|ind2="+ind2+"| max="+max+"|result[0]="+result[0]);
-
-            // System.out.println("n ind1 ="+ind1+"|ind2="+ind2+"| max="+max+"|result[0]="+result[0]);
-            // System.out.println("---");
-        
-            int[] resultRecL = plusGrdeSommeRec3(arr, n,resultLeft[1],resultLeft[2],result);
-            int[] resultRecR = plusGrdeSommeRec3(arr, n,resultRight[1],resultRight[2],result);
-            //left
-            if(resultRecL[0] > max){
-                result[0] = resultRecL[0];
-                result[1] = resultRecL[1];
-                result[2] = resultRecL[2];
+            if (left[0] >= right[0] && left[0] >= croise[0]) {
+                result[0] = left[0];
+                result[1] = left[1];
+                result[2] = left[2];
+            } else if (right[0] >= left[0] && right[0] >= croise[0]) {
+                result[0] = right[0];
+                result[1] = right[1];
+                result[2] = right[2];
+            } else {
+                result[0] = croise[0];
+                result[1] = croise[1];
+                result[2] = croise[2];
             }
-            //right
-            if(resultRecR[0] > max){
-                result[0] = resultRecR[0];
-                result[1] = resultRecR[1];
-                result[2] = resultRecR[2];
-            }
-
-            
         }
-        
-        
         return result;
     }
 
-
-    int[] trouverSousSequenceMax(int[] tableau, int debut, int fin) {
-        if (debut == fin) {
-            return new int[]{tableau[debut], debut, fin};
-        }
-
-        int milieu = (debut + fin) / 2;
-
-        int[] gauche = trouverSousSequenceMax(tableau, debut, milieu);
-        int[] droite = trouverSousSequenceMax(tableau, milieu + 1, fin);
-        int[] croise = trouverSousSequenceCroiseMax(tableau, debut, milieu, fin);
-
-        if (gauche[0] >= droite[0] && gauche[0] >= croise[0]) {
-            return gauche;
-        } else if (droite[0] >= gauche[0] && droite[0] >= croise[0]) {
-            return droite;
-        } else {
-            return croise;
-        }
-    }
-
+    /**
+     * 
+     * @param arr
+     * @param debut
+     * @param milieu
+     * @param fin
+     * @return
+     */
     int[] trouverSousSequenceCroiseMax(int[] tableau, int debut, int milieu, int fin) {
-        int sommeGaucheMax = 0;
+        int sumLeftMax = 0;
         int sommeCourante = 0;
-        int debutGauche = 0;
+        int left = 0;
 
         for (int i = milieu; i >= debut; i--) {
             sommeCourante += tableau[i];
             cpt++; //!do not count
-            if (sommeCourante > sommeGaucheMax) {
-                sommeGaucheMax = sommeCourante;
-                debutGauche = i;
+            if (sommeCourante > sumLeftMax) {
+                sumLeftMax = sommeCourante;
+                left = i;
             }
         }
 
-        int sommeDroiteMax = 0;
+        int sumRightMax = 0;
         sommeCourante = 0;
-        int debutDroite = 0;
+        int right = 0;
 
         for (int i = milieu + 1; i <= fin; i++) {
             sommeCourante += tableau[i];
-            if (sommeCourante > sommeDroiteMax) {
-                sommeDroiteMax = sommeCourante;
-                debutDroite = i;
+            if (sommeCourante > sumRightMax) {
+                sumRightMax = sommeCourante;
+                right = i;
             }
         }
 
-        int[] result = {sommeGaucheMax+sommeDroiteMax,debutGauche,debutDroite};
+        int[] result = {sumLeftMax+sumRightMax,left,right};
 
         return result;
     }
 
-
-    /**
-     * 
-     * @param arr the array
-     * @param n the size of the array
-     * @param indD 
-     * @param indF
-     * @param max
-     * @return
-     */
-    int[] calculer(int[] arr, int n,int indD,int indF,int max){
-        int[] result = new int[3];
-        int somme = 0;
-        for(int i =indD; i <= indF; i++){
-            somme += arr[i];
-            if(somme > max){
-                result[0] = somme;
-                result[1] = i;
-                result[2] = indF;
-            }
-        }
-
-        return result;
-    }
 
     int[] plusGrdeSomme4(int[] arr,int n){
         int[] result = new int[3];
@@ -312,6 +262,7 @@ class PlusGrandeSomme{
         int[] expect3 = {15,7,9};
         testCasPlusGrdeSomme1(arr3,n3,expect3);
     }
+
     void testPlusGrdeSomme2(){
             
         System.out.println();
@@ -350,7 +301,6 @@ class PlusGrandeSomme{
         int[] expect3 = {15,7,9};
         testCasPlusGrdeSomme3(arr3,n3,expect3);
     }
-
 
     void testPlusGrdeSomme4(){
         System.out.println();
@@ -420,9 +370,13 @@ class PlusGrandeSomme{
 
 
     }
+    void testPlusGrdeSomme2Efficacite(){
+
+
+    }
 
     void testPlusGrdeSomme3Efficacite(){
-        int maxN = (int) Math.pow(2, 6);
+        int maxN = (int) Math.pow(2, 8);
         int[] arr = new int[maxN];
         int min = -50, max = 50;
         long t1,t2,deltaT;
@@ -434,7 +388,7 @@ class PlusGrandeSomme{
         for(int n = 2; n <= maxN; n*=2){
             cpt=0;
             t1 = System.nanoTime();
-            trouverSousSequenceMax(arr, 0, n - 1);
+            plusGrdeSomme3(arr, n);
             t2 = System.nanoTime();
             deltaT = t2-t1;
             System.out.println("Temps"+deltaT+"ns");
@@ -443,6 +397,12 @@ class PlusGrandeSomme{
             System.out.println("cpt/nlog2n = "+(double) (cpt/nlog2n));
             System.out.println("-----------");
         }
+
+    }
+
+
+    void testPlusGrdeSomme4Efficacite(){
+
 
     }
 }
