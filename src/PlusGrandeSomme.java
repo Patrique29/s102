@@ -3,9 +3,10 @@ class PlusGrandeSomme{
     void principal(){
         int[] arr1 = {-1,8,-4,5,6,-9,-7,0,12};
         int n1 = 9;
-        System.out.println(plusGrdeSomme3(arr1,n1)[0]);
-        System.out.println(plusGrdeSomme3(arr1,n1)[1]);
-        System.out.println(plusGrdeSomme3(arr1,n1)[2]);
+        int[] result = plusGrdeSomme3(arr1,n1);
+        System.out.println(result[0]);
+        System.out.println(result[1]);
+        System.out.println(result[2]);
     }
 
 
@@ -88,15 +89,16 @@ class PlusGrandeSomme{
             int maxR = arr[milieu+1];
             resultRight = calculer(arr,n,milieu+1,ind2,maxR);
             max = resultLeft[0] + resultRight[0];
-            System.out.print("ancien ind1 ="+ind1+"|ind2="+ind2);
-            System.out.println("| max="+max+"|result[0]="+result[0]);
+
+
+            System.out.println("a ind1 ="+ind1+"|ind2="+ind2+"| max="+max+"|result[0]="+result[0]);
             if(max > result[0]){
                 result[0] = max;
                 result[1] = ind1;
                 result[2] = ind2;
             }
-            System.out.print("ind1 ="+ind1+"|ind2="+ind2);
-            System.out.println("|max="+max);
+            System.out.println("n ind1 ="+ind1+"|ind2="+ind2+"| max="+max+"|result[0]="+result[0]);
+            System.out.println("---");
             if(ind1 != milieu)
                 plusGrdeSommeRec3(arr, n,ind1,milieu,result);
             if(milieu+1 != ind2)
@@ -109,6 +111,15 @@ class PlusGrandeSomme{
         return result;
     }
 
+    /**
+     * 
+     * @param arr the array
+     * @param n the size of the array
+     * @param indD 
+     * @param indF
+     * @param max
+     * @return
+     */
     int[] calculer(int[] arr, int n,int indD,int indF,int max){
         int[] result = new int[3];
         int somme = 0;
