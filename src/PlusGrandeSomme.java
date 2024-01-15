@@ -391,7 +391,7 @@ class PlusGrandeSomme{
             plusGrdeSomme3(arr, n);
             t2 = System.nanoTime();
             deltaT = t2-t1;
-            System.out.println("Temps"+deltaT+"ns");
+            System.out.println("Temps="+deltaT+"ns");
             System.out.println("cpt="+cpt);
             nlog2n = n*(Math.log10(n) / Math.log10(2));
             System.out.println("cpt/nlog2n = "+(double) (cpt/nlog2n));
