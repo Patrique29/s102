@@ -4,6 +4,8 @@ class PlusGrandeSomme{
         int[] arr1 = {-1,8,-4,5,6,-9,-7,0,12};
         int n1 = 9;
         System.out.println(plusGrdeSomme3(arr1,n1)[0]);
+        System.out.println(plusGrdeSomme3(arr1,n1)[1]);
+        System.out.println(plusGrdeSomme3(arr1,n1)[2]);
     }
 
 
@@ -57,15 +59,16 @@ class PlusGrandeSomme{
     int[] plusGrdeSomme3(int[] arr, int n){
         //![max,ind1,ind2]
         int ind1 = 0,ind2 =n-1;
-        int[] result;
+        int[] result = new int[3];
         
-        result = plusGrdeSommeRec3(arr,n,ind1,ind2);
+        result = plusGrdeSommeRec3(arr,n,ind1,ind2,result);
 
         return result;
     }
 
-    int[] plusGrdeSommeRec3(int[] arr, int n,int ind1,int ind2){
-        int[] result = new int[3];
+    int[] plusGrdeSommeRec3(int[] arr, int n,int ind1,int ind2,int[] pastResult){
+        int[] result = pastResult;
+        
         if (ind1 == ind2)
         {
             result[0] = arr[ind1];
@@ -73,35 +76,55 @@ class PlusGrandeSomme{
             result[2] = ind2;
         }else{
             int milieu = (ind1 + ind2)/2;
-            int mgmax = arr[milieu];
+            int[] resultLeft;
+            int[] resultRight;
+            int max;
+
             //left side
-            int somme = 0;
-            for(int i = ind1;i <= milieu;i++){
-                somme += arr[i];
-                if(somme > mgmax){
-                    mgmax = somme;
-                    result[1] = i;
-                    result[2] = milieu;
-                }
+            int maxL = arr[milieu];
+            resultLeft = calculer(arr,n,ind1,milieu,maxL);
+
+            //right side
+            int maxR = arr[milieu+1];
+            resultRight = calculer(arr,n,milieu+1,ind2,maxR);
+            max = resultLeft[0] + resultRight[0];
+            System.out.print("ancien ind1 ="+ind1+"|ind2="+ind2);
+            System.out.println("| max="+max+"|result[0]="+result[0]);
+            if(max > result[0]){
+                result[0] = max;
+                result[1] = ind1;
+                result[2] = ind2;
             }
-            int mdmax = arr[milieu+1];
-            for(int i = ind2;i > milieu;i--){
-                somme += arr[i];
-                if(somme > mdmax){
-                    mdmax = somme;
-                    result[1] = milieu;
-                    result[2] = i;
-                }
-            }
-            result[0] = mdmax + mgmax;
+            System.out.print("ind1 ="+ind1+"|ind2="+ind2);
+            System.out.println("|max="+max);
+            if(ind1 != milieu)
+                plusGrdeSommeRec3(arr, n,ind1,milieu,result);
+            if(milieu+1 != ind2)
+                plusGrdeSommeRec3(arr, n,milieu+1,ind2,result);
 
             
-
-
         }
+        
         
         return result;
     }
+
+    int[] calculer(int[] arr, int n,int indD,int indF,int max){
+        int[] result = new int[3];
+        int somme = 0;
+        for(int i =indD; i <= indF; i++){
+            somme += arr[i];
+            if(somme > max){
+                result[0] = somme;
+                result[1] = i;
+                result[2] = indF;
+            }
+        }
+
+        return result;
+    }
+
+
 // METHODE DE TEST
 
 
