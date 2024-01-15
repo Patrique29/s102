@@ -5,7 +5,7 @@ class PlusGrandeSomme{
         testPlusGrdeSomme2();
         testPlusGrdeSomme3();
         testPlusGrdeSomme4();
-        testPlusGrdeSomme3Efficacite();
+        testPlusGrdeSomme1Efficacite();
     }
 
 
@@ -394,7 +394,28 @@ class PlusGrandeSomme{
      * 
      */
     void testPlusGrdeSomme1Efficacite(){
+        int maxN = (int) Math.pow(2, 8);
+        int[] arr = new int[maxN];
+        int min = -50, max = 50;
+        long t1,t2,deltaT;
+        double nlog2n;
+        for(int i =0; i < maxN;i++){
+            arr[i] = min + (int)(Math.random() * ((max - min) + 1));
+        }
 
+        for(int n = 2; n <= maxN; n*=2){
+            cpt=0;
+            t1 = System.nanoTime();
+            plusGrdeSomme1(arr, n);
+            t2 = System.nanoTime();
+            deltaT = t2-t1;
+            System.out.println("Temps="+deltaT+"ns");
+            System.out.println("cpt="+cpt);
+            System.out.println("n^3="+(n*n*n));
+            nlog2n = n*n*(Math.log10(n) / Math.log10(2));
+            System.out.println("cpt/n^3 = "+(double) (cpt/(n*n*n)));
+            System.out.println("-----------");
+        }
 
     }
     /**
