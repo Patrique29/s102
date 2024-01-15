@@ -2,9 +2,11 @@ class PlusGrandeSomme{
     long cpt = 0;
     void principal(){
         int[] arr1 = {-1,8,-4,5,6,-9,-7,0,12};
+        int[] arr2 = {-8,-4,6,8,-6,10,-4,-4};
         int n1 = 9;
         // int[] result = plusGrdeSomme3(arr1,n1);
-        int[] result = plusGrdeSomme2(arr1,n1);
+        // int[] result = plusGrdeSomme2(arr1,n1);
+        int[] result = plusGrdeSomme4(arr2,arr2.length);
         System.out.println(result[0]);
         System.out.println(result[1]);
         System.out.println(result[2]);
@@ -162,6 +164,40 @@ class PlusGrandeSomme{
     }
 
 
+    int[] plusGrdeSomme4(int[] list,int n){
+        int[] result = new int[3];
+        int[] S = new int[n];
+        int valMax;
+        int indDeb = 0;
+        int indMax = 0;
+        S[0] = list[0];
+        for(int i = 1; i<n; i++){
+            if(S[i-1] <= 0){
+                S[i] = list[i];
+            }
+            else{
+                S[i] = list[i] + S[i - 1];
+            }
+        }
+        valMax = S[0];
+        for(int j = 1; j<n; j++){
+            if(valMax < S[j]){
+                valMax = S[j];
+                indMax = j;
+            }
+        }
+        result[0] = valMax;
+        result[2] = indMax;
+
+        for(int m = indMax; m>0; m--){
+            if(list[m] == S[m]){
+                indDeb = m;
+                break;
+            }
+        }
+        result[1] = indDeb;
+        return result;
+    }
 // METHODE DE TEST
 
 
