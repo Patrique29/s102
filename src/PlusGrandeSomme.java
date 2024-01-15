@@ -5,6 +5,7 @@ class PlusGrandeSomme{
         testPlusGrdeSomme2();
         testPlusGrdeSomme3();
         testPlusGrdeSomme4();
+        testPlusGrdeSomme3Efficacite();
     }
 
 
