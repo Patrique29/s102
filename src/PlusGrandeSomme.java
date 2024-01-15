@@ -1,27 +1,10 @@
 class PlusGrandeSomme{
     long cpt = 0;
     void principal(){
-        int[] arr1 = {-1,8,-4,5,6,-9,-7,0,12};
-        int[] arr2 = {-8,-4,6,8,-6,10,-4,-4};
-        int[] arr3 = {-1,5,5,5,-80,3,3,3,3,3};
-        int[] arr4 = {-1,3,3,3,3,3,-80,5,5,5};
-        // int[] result = plusGrdeSomme3(arr1,arr1.length);
-        // int[] result = plusGrdeSomme2(arr1,arr1.length);
-        // int[] result = plusGrdeSomme4(arr4,arr2.length);
-        // System.out.println(result[0]);
-        // System.out.println(result[1]);
-        // System.out.println(result[2]);
-        testPlusGrdeSomme3Efficacite();
-
-        // int[] resultat = plusGrdeSomme3(arr2, arr2.length);
-
-       
-
         testPlusGrdeSomme1();
         testPlusGrdeSomme2();
         testPlusGrdeSomme3();
         testPlusGrdeSomme4();
-        
     }
 
 
@@ -75,15 +58,15 @@ class PlusGrandeSomme{
     int[] plusGrdeSomme2(int[] arr, int n){
         int[] result = new int[3];
         result[0] = arr[0];
-        int somme;
+        int sum;
         boolean onlyNegatives = true;
         for(int i = 0; i < n; i++){
-            somme=0;
+            sum=0;
             if(arr[i] > 0) onlyNegatives = false;
             for(int j = i; j < n;j++){
-                somme += arr[j];
-                if(somme > result[0]){
-                    result[0] = somme;
+                sum += arr[j];
+                if(sum > result[0]){
+                    result[0] = sum;
                     result[1] = i;
                     result[2] = j;
                 }
@@ -115,7 +98,7 @@ class PlusGrandeSomme{
     }
 
     /**
-     * 
+     * TODO
      * @param arr
      * @param n
      * @param start
@@ -156,33 +139,33 @@ class PlusGrandeSomme{
     /**
      * 
      * @param arr
-     * @param debut
-     * @param milieu
-     * @param fin
+     * @param start
+     * @param middle
+     * @param end
      * @return
      */
-    int[] trouverSousSequenceCroiseMax(int[] tableau, int debut, int milieu, int fin) {
+    int[] trouverSousSequenceCroiseMax(int[] arr, int start, int middle, int end) {
         int sumLeftMax = 0;
-        int sommeCourante = 0;
+        int sum = 0;
         int left = 0;
 
-        for (int i = milieu; i >= debut; i--) {
-            sommeCourante += tableau[i];
+        for (int i = middle; i >= start; i--) {
+            sum += arr[i];
             cpt++; //!do not count
-            if (sommeCourante > sumLeftMax) {
-                sumLeftMax = sommeCourante;
+            if (sum > sumLeftMax) {
+                sumLeftMax = sum;
                 left = i;
             }
         }
 
         int sumRightMax = 0;
-        sommeCourante = 0;
+        sum = 0;
         int right = 0;
 
-        for (int i = milieu + 1; i <= fin; i++) {
-            sommeCourante += tableau[i];
-            if (sommeCourante > sumRightMax) {
-                sumRightMax = sommeCourante;
+        for (int i = middle + 1; i <= end; i++) {
+            sum += arr[i];
+            if (sum > sumRightMax) {
+                sumRightMax = sum;
                 right = i;
             }
         }
@@ -192,13 +175,18 @@ class PlusGrandeSomme{
         return result;
     }
 
-
+    /**
+     * 
+     * @param arr
+     * @param n
+     * @return
+     */
     int[] plusGrdeSomme4(int[] arr,int n){
         int[] result = new int[3];
         int[] S = new int[n];
         int valMax;
         boolean onlyNegatives = true;
-        int indDeb = 0;
+        int indStart = 0;
         int indMax = 0;
         S[0] = arr[0];
         
@@ -225,11 +213,11 @@ class PlusGrandeSomme{
 
         for(int m = indMax; m>0; m--){
             if(arr[m] == S[m]){
-                indDeb = m;
+                indStart = m;
                 break;
             }
         }
-        result[1] = indDeb;
+        result[1] = indStart;
 
         if(onlyNegatives){
             result[0] = 0;
@@ -241,9 +229,11 @@ class PlusGrandeSomme{
         return result;
     }
 
-    // METHODE DE TEST
+    // test function
     
-    
+    /**
+     * test of the plusGrdeSomme1()
+     */
     void testPlusGrdeSomme1(){
         System.out.println();
         System.out.println("n^3");
@@ -262,7 +252,10 @@ class PlusGrandeSomme{
         int[] expect3 = {15,7,9};
         testCasPlusGrdeSomme1(arr3,n3,expect3);
     }
-
+    
+    /**
+     * test of the plusGrdeSomme2()
+     */
     void testPlusGrdeSomme2(){
             
         System.out.println();
@@ -283,6 +276,9 @@ class PlusGrandeSomme{
         testCasPlusGrdeSomme2(arr3,n3,expect3);
     }
 
+    /**
+     * test of the plusGrdeSomme3()
+     */
     void testPlusGrdeSomme3(){
         System.out.println();
         System.out.println("nlog2n");
@@ -302,6 +298,9 @@ class PlusGrandeSomme{
         testCasPlusGrdeSomme3(arr3,n3,expect3);
     }
 
+    /**
+     * test of the plusGrdeSomme4()
+     */
     void testPlusGrdeSomme4(){
         System.out.println();
         System.out.println("n");
@@ -322,8 +321,14 @@ class PlusGrandeSomme{
     }
 
 
-//METHODE TEST CAS
+//test case function
 
+    /**
+     * test case of plusGrdeSomme1()
+     * @param arr the array
+     * @param n the size of the arry
+     * @param expect the expected value
+     */
     void testCasPlusGrdeSomme1(int[] arr,int n,int[] expect){
         int[] output = plusGrdeSomme1(arr,n);
         boolean exe = true;
@@ -334,6 +339,12 @@ class PlusGrandeSomme{
         if(exe) System.out.println("[OK]");
         else System.err.println("[ERROR]");
     }
+    /**
+     * test case of plusGrdeSomme2()
+     * @param arr the array
+     * @param n the size of the arry
+     * @param expect the expected value
+     */
     void testCasPlusGrdeSomme2(int[] arr,int n,int[] expect){
         int[] output = plusGrdeSomme2(arr,n);
         boolean exe = true;
@@ -344,6 +355,12 @@ class PlusGrandeSomme{
         if(exe) System.out.println("[OK]");
         else System.err.println("[ERROR]");
     }
+    /**
+     * test case of plusGrdeSomme3()
+     * @param arr the array
+     * @param n the size of the arry
+     * @param expect the expected value
+     */
     void testCasPlusGrdeSomme3(int[] arr,int n,int[] expect){
         int[] output = plusGrdeSomme3(arr,n);
         boolean exe = true;
@@ -354,6 +371,12 @@ class PlusGrandeSomme{
         if(exe) System.out.println("[OK]");
         else System.err.println("[ERROR]");
     }
+    /**
+     * test case of plusGrdeSomme4()
+     * @param arr the array
+     * @param n the size of the arry
+     * @param expect the expected value
+     */
     void testCasPlusGrdeSomme4(int[] arr,int n,int[] expect){
         int[] output = plusGrdeSomme4(arr,n);
         boolean exe = true;
@@ -366,15 +389,23 @@ class PlusGrandeSomme{
     }
 
 //METHODE EFFICACITE
+    /**
+     * 
+     */
     void testPlusGrdeSomme1Efficacite(){
 
 
     }
+    /**
+     * 
+     */
     void testPlusGrdeSomme2Efficacite(){
 
 
     }
-
+    /**
+     * 
+     */
     void testPlusGrdeSomme3Efficacite(){
         int maxN = (int) Math.pow(2, 8);
         int[] arr = new int[maxN];
@@ -400,7 +431,9 @@ class PlusGrandeSomme{
 
     }
 
-
+    /**
+     * 
+     */
     void testPlusGrdeSomme4Efficacite(){
 
 
