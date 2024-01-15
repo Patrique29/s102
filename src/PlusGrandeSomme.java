@@ -327,7 +327,7 @@ class PlusGrandeSomme{
     /**
      * test case of plusGrdeSomme1()
      * @param arr the array
-     * @param n the size of the arry
+     * @param n the size of the array
      * @param expect the expected value
      */
     void testCasPlusGrdeSomme1(int[] arr,int n,int[] expect){
@@ -343,7 +343,7 @@ class PlusGrandeSomme{
     /**
      * test case of plusGrdeSomme2()
      * @param arr the array
-     * @param n the size of the arry
+     * @param n the size of the array
      * @param expect the expected value
      */
     void testCasPlusGrdeSomme2(int[] arr,int n,int[] expect){
@@ -359,7 +359,7 @@ class PlusGrandeSomme{
     /**
      * test case of plusGrdeSomme3()
      * @param arr the array
-     * @param n the size of the arry
+     * @param n the size of the array
      * @param expect the expected value
      */
     void testCasPlusGrdeSomme3(int[] arr,int n,int[] expect){
@@ -375,7 +375,7 @@ class PlusGrandeSomme{
     /**
      * test case of plusGrdeSomme4()
      * @param arr the array
-     * @param n the size of the arry
+     * @param n the size of the array
      * @param expect the expected value
      */
     void testCasPlusGrdeSomme4(int[] arr,int n,int[] expect){
