@@ -3,7 +3,8 @@ class PlusGrandeSomme{
     void principal(){
         int[] arr1 = {-1,8,-4,5,6,-9,-7,0,12};
         int n1 = 9;
-        int[] result = plusGrdeSomme3(arr1,n1);
+        // int[] result = plusGrdeSomme3(arr1,n1);
+        int[] result = plusGrdeSomme2(arr1,n1);
         System.out.println(result[0]);
         System.out.println(result[1]);
         System.out.println(result[2]);
@@ -50,6 +51,31 @@ class PlusGrandeSomme{
         return result;
     }
     
+
+    /**
+     * 
+     * @param arr
+     * @param n
+     * @return
+     */
+    int[] plusGrdeSomme2(int[] arr, int n){
+        int[] result = new int[3];
+        result[0] = arr[0];
+        int somme;
+        for(int i = 0; i < n; i++){
+            somme=0;
+            for(int j = i; j < n;j++){
+                somme += arr[j];
+                if(somme > result[0]){
+                    result[0] = somme;
+                    result[1] = i;
+                    result[2] = j;
+                }
+            }
+        }
+
+        return result;
+    }
     
     /**
      * TODO
