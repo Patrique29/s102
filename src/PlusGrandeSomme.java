@@ -14,6 +14,9 @@ class PlusGrandeSomme{
         testPlusGrdeSomme3();
         testPlusGrdeSomme4();
         testPlusGrdeSomme1Efficacite();
+        testPlusGrdeSomme2Efficacite();
+        testPlusGrdeSomme3Efficacite();
+        testPlusGrdeSomme4Efficacite();
     }
 
 
