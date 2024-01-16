@@ -31,27 +31,34 @@ class PlusGrandeSomme{
         //* add = max
         //* index = ind1
         //* index+lengthSubsequence-1 = ind2 or the index + its length - 1
-        int[] result = new int[3];
-        int add = 0;
-        boolean onlyNegatives = true;
-        for(int index = 1; index < n; index++){
-            if(arr[index] > 0) onlyNegatives = false;
+        int[] result = new int[3]; //! 1
+        int add = 0; //! 2
+        boolean onlyNegatives = true; //! 2
+        //! 2 
+        for(int index = 1; index < n; index++){ //! nbT1(1
+            //! 2
+            if(arr[index] > 0) onlyNegatives = false; //! 1
             // subsequence size
-            for(int lengthSubsequence = 0; lengthSubsequence < n-index; lengthSubsequence++){
-                for(int iii = 0;iii < lengthSubsequence ;iii++){
+            //! 2
+            for(int lengthSubsequence = 0; lengthSubsequence < n-index; lengthSubsequence++){//! nbT2(2
+                //! 2
+                //! 2
+                for(int iii = 0;iii < lengthSubsequence ;iii++){ //! nbT3(1
+                    //! 2
                     cpt++; //!do not count
-                    add += arr[index+iii];
+                    add += arr[index+iii];//! 3
+                }//!)
+
+                if(add > result[0]){ //! 1
+                    result[0] = add; //! 1
+                    result[1] = index; //! 1
+                    result[2] = index + lengthSubsequence-1; // -1 because of the length //! 3
                 }
-                if(add > result[0]){
-                    result[0] = add;
-                    result[1] = index;
-                    result[2] = index + lengthSubsequence-1; // -1 because of the length
-                }
-                add = 0;
-            }
-        }
+                add = 0; //! 1
+            }//! )
+        }//! )
         
-        if(onlyNegatives){
+        if(onlyNegatives){ //! 1
             result[0] = 0;
             result[1] = 0;
             result[2] = 0;
