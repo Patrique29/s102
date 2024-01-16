@@ -452,7 +452,7 @@ class PlusGrandeSomme{
      * test the efficiency of plusGrdeSomme3
      */
     void testPlusGrdeSomme3Efficacite(){
-        int maxN = (int) Math.pow(2, 8);
+        int maxN = (int) Math.pow(2, 16);
         int[] arr = new int[maxN];
         int min = -50, max = 50;
         long t1,t2,deltaT;
@@ -485,6 +485,7 @@ class PlusGrandeSomme{
         int[] arr = new int[maxN];
         int min = -50, max = 50;
         long t1,t2,deltaT;
+        double k; 
         for(int i =0; i < maxN;i++){
             arr[i] = min + (int)(Math.random() * ((max - min) + 1));
         }
@@ -496,8 +497,9 @@ class PlusGrandeSomme{
             t2 = System.nanoTime();
             deltaT = t2-t1;
             System.out.println("Temps="+deltaT+"ns");
+            k = (double) (cpt/(double)(n));
             System.out.println("cpt="+cpt);
-            System.out.println("cpt/n = "+(double) (cpt/n));
+            System.out.println("cpt/n = "+(double) k);
             System.out.println("-----------");
         }
 
