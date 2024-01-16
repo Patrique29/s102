@@ -1,0 +1,28 @@
+
+int[] plusGrandeSommeEnN2(int[] tab, int nbElem){
+        int n = nbElem;
+        int sommeMax = tab[0];
+        int iMax = 0;
+        int jMax = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int somme = sommeSousSequence(tab, i, j);
+                if (somme > sommeMax) {
+                    sommeMax = somme;
+                    iMax = i;
+                    jMax = j;
+                }
+            }
+        }
+        
+        return new int[]{sommeMax, iMax, jMax};
+    }
+
+    int sommeSousSequence(int[] tab, int i, int j) {
+        int somme = 0;
+        for (int indice = i; indice <= j; indice++) {
+            somme= somme + tab[indice];
+        }
+        return somme;
+    }
