@@ -394,11 +394,10 @@ class PlusGrandeSomme{
      * test the effiency of plusGrdeSomme1
      */
     void testPlusGrdeSomme1Efficacite(){
-        int maxN = (int) Math.pow(2, 10);
+        int maxN = (int) Math.pow(2, 8);
         int[] arr = new int[maxN];
         int min = -50, max = 50;
         long t1,t2,deltaT;
-        double k;
         for(int i =0; i < maxN;i++){
             arr[i] = min + (int)(Math.random() * ((max - min) + 1));
         }
@@ -409,12 +408,10 @@ class PlusGrandeSomme{
             plusGrdeSomme1(arr, n);
             t2 = System.nanoTime();
             deltaT = t2-t1;
-
-            System.out.println("n="+n);
             System.out.println("Temps="+deltaT+"ns");
             System.out.println("cpt="+cpt);
-            k = cpt/(double) (n*n*n);
-            System.out.println("cpt/n^3 = "+(double) (k));
+            System.out.println("cpt/n^3 = "+(double) (cpt/Math.pow(n, 3)));
+            System.out.println(n*n*n);
             System.out.println("-----------");
         }
 
@@ -423,7 +420,25 @@ class PlusGrandeSomme{
      * test the effiency of plusGrdeSomme2
      */
     void testPlusGrdeSomme2Efficacite(){
+        int maxN = (int) Math.pow(2, 8);
+        int[] arr = new int[maxN];
+        int min = -50, max = 50;
+        long t1,t2,deltaT;
+        for(int i =0; i < maxN;i++){
+            arr[i] = min + (int)(Math.random() * ((max - min) + 1));
+        }
 
+        for(int n = 2; n <= maxN; n*=2){
+            cpt=0;
+            t1 = System.nanoTime();
+            plusGrdeSomme2(arr, n);
+            t2 = System.nanoTime();
+            deltaT = t2-t1;
+            System.out.println("Temps="+deltaT+"ns");
+            System.out.println("cpt="+cpt);
+            System.out.println("cpt/n^2 = "+(double) (cpt/Math.pow(n, 2)));
+            System.out.println("-----------");
+        }
 
     }
     /**
@@ -459,7 +474,25 @@ class PlusGrandeSomme{
      * test the effiency of plusGrdeSomme1
      */
     void testPlusGrdeSomme4Efficacite(){
+        int maxN = (int) Math.pow(2, 16);
+        int[] arr = new int[maxN];
+        int min = -50, max = 50;
+        long t1,t2,deltaT;
+        for(int i =0; i < maxN;i++){
+            arr[i] = min + (int)(Math.random() * ((max - min) + 1));
+        }
 
+        for(int n = 2; n <= maxN; n*=2){
+            cpt=0;
+            t1 = System.nanoTime();
+            plusGrdeSomme4(arr, n);
+            t2 = System.nanoTime();
+            deltaT = t2-t1;
+            System.out.println("Temps="+deltaT+"ns");
+            System.out.println("cpt="+cpt);
+            System.out.println("cpt/n = "+(double) (cpt/n));
+            System.out.println("-----------");
+        }
 
     }
 }
