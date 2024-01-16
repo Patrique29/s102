@@ -5,7 +5,7 @@
 class PlusGrandeSomme{
     long cpt = 0;
     /**
-     * 
+     * principal
      */
     void principal(){
         testPlusGrdeSomme1();
