@@ -1,5 +1,12 @@
+/**
+ * biggest sum in a subsequence
+ * @author Rayanne M., Maël C.
+ */
 class PlusGrandeSomme{
     long cpt = 0;
+    /**
+     * 
+     */
     void principal(){
         testPlusGrdeSomme1();
         testPlusGrdeSomme2();
@@ -10,7 +17,7 @@ class PlusGrandeSomme{
 
 
     /**
-     * TODO
+     * efficiency in Θ(n^3)
      * @param arr the array 
      * @param n the length of the array
      * @return an array 
@@ -51,7 +58,7 @@ class PlusGrandeSomme{
     
 
     /**
-     * TODO
+     * efficiency in Θ(n^2)
      * @param arr
      * @param n
      * @return
@@ -83,7 +90,7 @@ class PlusGrandeSomme{
     }
     
     /**
-     * TODO
+     * efficiency in Θ(nlog2(n))
      * @param arr the array
      * @param n length of the array
      * @return an array
@@ -98,14 +105,7 @@ class PlusGrandeSomme{
         return result;
     }
 
-    /**
-     * TODO
-     * @param arr
-     * @param n
-     * @param start
-     * @param end
-     * @return
-     */
+    
     int[] plusGrdeSommeRec3(int[] arr,int n, int start, int end) {
         int[] result = new int[3];
         if (start == end) {
@@ -391,7 +391,7 @@ class PlusGrandeSomme{
 
 //METHODE EFFICACITE
     /**
-     * 
+     * test the effiency of plusGrdeSomme1
      */
     void testPlusGrdeSomme1Efficacite(){
         int maxN = (int) Math.pow(2, 10);
@@ -420,14 +420,14 @@ class PlusGrandeSomme{
 
     }
     /**
-     * 
+     * test the effiency of plusGrdeSomme2
      */
     void testPlusGrdeSomme2Efficacite(){
 
 
     }
     /**
-     * 
+     * test the effiency of plusGrdeSomme3
      */
     void testPlusGrdeSomme3Efficacite(){
         int maxN = (int) Math.pow(2, 8);
@@ -456,7 +456,7 @@ class PlusGrandeSomme{
     }
 
     /**
-     * 
+     * test the effiency of plusGrdeSomme1
      */
     void testPlusGrdeSomme4Efficacite(){
 
