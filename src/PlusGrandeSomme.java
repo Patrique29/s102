@@ -219,6 +219,7 @@ class PlusGrandeSomme{
             else{
                 S[i] = arr[i] + S[i - 1];
             }
+            cpt++;
         }
         valMax = S[0];
         for(int j = 1; j<n; j++){
@@ -483,6 +484,7 @@ class PlusGrandeSomme{
         int[] arr = new int[maxN];
         int min = -50, max = 50;
         long t1,t2,deltaT;
+        double k; 
         for(int i =0; i < maxN;i++){
             arr[i] = min + (int)(Math.random() * ((max - min) + 1));
         }
@@ -494,8 +496,9 @@ class PlusGrandeSomme{
             t2 = System.nanoTime();
             deltaT = t2-t1;
             System.out.println("Temps="+deltaT+"ns");
+            k = (double) (cpt/(double)(n));
             System.out.println("cpt="+cpt);
-            System.out.println("cpt/n = "+(double) (cpt/n));
+            System.out.println("cpt/n = "+(double) k);
             System.out.println("-----------");
         }
 
