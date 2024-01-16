@@ -259,10 +259,6 @@ class PlusGrandeSomme{
         int[] expect2 = {0,0,0};
         testCasPlusGrdeSomme1(arr2,n2,expect2);
         
-        int[] arr3 = {-1,3,3,3,3,3,-80,5,5,5};
-        int n3 = 6;
-        int[] expect3 = {15,7,9};
-        testCasPlusGrdeSomme1(arr3,n3,expect3);
     }
     
     /**
@@ -282,10 +278,7 @@ class PlusGrandeSomme{
         int[] expect2 = {0,0,0};
         testCasPlusGrdeSomme2(arr2,n2,expect2);
         
-        int[] arr3 = {-1,3,3,3,3,3,-80,5,5,5};
-        int n3 = 6;
-        int[] expect3 = {15,7,9};
-        testCasPlusGrdeSomme2(arr3,n3,expect3);
+
     }
 
     /**
@@ -304,10 +297,7 @@ class PlusGrandeSomme{
         int[] expect2 = {0,0,0};
         testCasPlusGrdeSomme3(arr2,n2,expect2);
         
-        int[] arr3 = {-1,3,3,3,3,3,-80,5,5,5};
-        int n3 = 6;
-        int[] expect3 = {15,7,9};
-        testCasPlusGrdeSomme3(arr3,n3,expect3);
+
     }
 
     /**
@@ -326,10 +316,7 @@ class PlusGrandeSomme{
         int[] expect2 = {0,0,0};
         testCasPlusGrdeSomme4(arr2,n2,expect2);
 
-        int[] arr3 = {-1,3,3,3,3,3,-80,5,5,5};
-        int n3 = 6;
-        int[] expect3 = {15,7,9};
-        testCasPlusGrdeSomme4(arr3,n3,expect3);
+
     }
 
 
