@@ -3,6 +3,7 @@
  * @author Rayanne M., Maël C.
  */
 class PlusGrandeSomme{
+    /** counter of operation */
     long cpt = 0;
     /**
      * principal
@@ -20,7 +21,7 @@ class PlusGrandeSomme{
      * efficiency in Θ(n^3)
      * @param arr the array 
      * @param n the length of the array
-     * @return an array 
+     * @return an array as [max,first index, last index]
      */
     int[] plusGrdeSomme1(int[] arr,int n){
         //![max,ind1,ind2]
@@ -59,9 +60,9 @@ class PlusGrandeSomme{
 
     /**
      * efficiency in Θ(n^2)
-     * @param arr
-     * @param n
-     * @return
+     * @param arr the array
+     * @param n the size of the array
+     * @return an array as [max,first index, last index]
      */
     int[] plusGrdeSomme2(int[] arr, int n){
         int[] result = new int[3];
@@ -93,7 +94,7 @@ class PlusGrandeSomme{
      * efficiency in Θ(nlog2(n))
      * @param arr the array
      * @param n length of the array
-     * @return an array
+     * @return an array as [max,first index, last index]
      */
     int[] plusGrdeSomme3(int[] arr, int n){
         //![max,ind1,ind2]
@@ -105,7 +106,14 @@ class PlusGrandeSomme{
         return result;
     }
 
-    
+    /**
+     * the recursive function of plusGrdeSomme3
+     * @param arr the array
+     * @param n the size 
+     * @param start the first index
+     * @param end the last index
+     * @return an array as [max,first index, last index]
+     */
     int[] plusGrdeSommeRec3(int[] arr,int n, int start, int end) {
         int[] result = new int[3];
         if (start == end) {
@@ -138,12 +146,12 @@ class PlusGrandeSomme{
     }
 
     /**
-     * 
-     * @param arr
-     * @param start
-     * @param middle
-     * @param end
-     * @return
+     * find the biggest subsequence when it's on both side
+     * @param arr the array
+     * @param start the first index
+     * @param middle the middle index
+     * @param end the last index 
+     * @return an array as [max,first index, last index]
      */
     int[] trouverSousSequenceCroiseMax(int[] arr, int start, int middle, int end) {
         int sumLeftMax = 0;
@@ -177,10 +185,10 @@ class PlusGrandeSomme{
     }
 
     /**
-     * 
-     * @param arr
-     * @param n
-     * @return
+     * efficiency in Θ(n)
+     * @param arr the array
+     * @param n the size of the array
+     * @return an array as [max,first index, last index]
      */
     int[] plusGrdeSomme4(int[] arr,int n){
         int[] result = new int[3];
@@ -233,7 +241,7 @@ class PlusGrandeSomme{
     // test function
     
     /**
-     * test of the plusGrdeSomme1()
+     * test of plusGrdeSomme1()
      */
     void testPlusGrdeSomme1(){
         System.out.println();
@@ -255,7 +263,7 @@ class PlusGrandeSomme{
     }
     
     /**
-     * test of the plusGrdeSomme2()
+     * test of plusGrdeSomme2()
      */
     void testPlusGrdeSomme2(){
             
@@ -278,7 +286,7 @@ class PlusGrandeSomme{
     }
 
     /**
-     * test of the plusGrdeSomme3()
+     * test of plusGrdeSomme3()
      */
     void testPlusGrdeSomme3(){
         System.out.println();
@@ -300,7 +308,7 @@ class PlusGrandeSomme{
     }
 
     /**
-     * test of the plusGrdeSomme4()
+     * test of plusGrdeSomme4()
      */
     void testPlusGrdeSomme4(){
         System.out.println();
