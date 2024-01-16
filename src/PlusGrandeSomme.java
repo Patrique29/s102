@@ -452,7 +452,7 @@ class PlusGrandeSomme{
      * test the efficiency of plusGrdeSomme3
      */
     void testPlusGrdeSomme3Efficacite(){
-        int maxN = (int) Math.pow(2, 8);
+        int maxN = (int) Math.pow(2, 16);
         int[] arr = new int[maxN];
         int min = -50, max = 50;
         long t1,t2,deltaT;
