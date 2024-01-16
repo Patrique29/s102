@@ -36,7 +36,7 @@ class PlusGrandeSomme{
         boolean onlyNegatives = true;
         for(int index = 1; index < n; index++){
             if(arr[index] > 0) onlyNegatives = false;
-            // taille de la sous séquence
+            // subsequence size
             for(int lengthSubsequence = 0; lengthSubsequence < n-index; lengthSubsequence++){
                 for(int iii = 0;iii < lengthSubsequence ;iii++){
                     cpt++; //!do not count
@@ -387,7 +387,7 @@ class PlusGrandeSomme{
         else System.err.println("[ERROR]");
     }
 
-//METHODE EFFICACITE
+//test efficiency
     /**
      * test the effiency of plusGrdeSomme1
      */
