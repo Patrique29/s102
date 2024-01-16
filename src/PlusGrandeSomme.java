@@ -389,7 +389,7 @@ class PlusGrandeSomme{
 
 //test efficiency
     /**
-     * test the effiency of plusGrdeSomme1
+     * test the efficiency of plusGrdeSomme1
      */
     void testPlusGrdeSomme1Efficacite(){
         int maxN = (int) Math.pow(2, 8);
@@ -415,7 +415,7 @@ class PlusGrandeSomme{
 
     }
     /**
-     * test the effiency of plusGrdeSomme2
+     * test the efficiency of plusGrdeSomme2
      */
     void testPlusGrdeSomme2Efficacite(){
         int maxN = (int) Math.pow(2, 8);
@@ -440,7 +440,7 @@ class PlusGrandeSomme{
 
     }
     /**
-     * test the effiency of plusGrdeSomme3
+     * test the efficiency of plusGrdeSomme3
      */
     void testPlusGrdeSomme3Efficacite(){
         int maxN = (int) Math.pow(2, 8);
@@ -469,7 +469,7 @@ class PlusGrandeSomme{
     }
 
     /**
-     * test the effiency of plusGrdeSomme1
+     * test the efficiency of plusGrdeSomme1
      */
     void testPlusGrdeSomme4Efficacite(){
         int maxN = (int) Math.pow(2, 16);
