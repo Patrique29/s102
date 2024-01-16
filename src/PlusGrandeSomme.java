@@ -83,6 +83,7 @@ class PlusGrandeSomme{
             sum=0;
             if(arr[i] > 0) onlyNegatives = false;
             for(int j = i; j < n;j++){
+                cpt++;
                 sum += arr[j];
                 if(sum > result[0]){
                     result[0] = sum;
